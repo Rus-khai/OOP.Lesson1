@@ -10,6 +10,12 @@ class Product:
         self.price = price
         self.quantity = quantity
 
+    def __eq__(self, other):
+        return (self.name == other.name and
+                self.description == other.description and
+                self.price == other.price and
+                self.quantity == other.quantity)
+
 
 class Category:
     name: str
