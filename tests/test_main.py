@@ -1,4 +1,5 @@
 from src.main import Category, Product
+from tests.conftest import test_products_3
 
 
 def test_main_product(test_products):
@@ -36,9 +37,9 @@ def test_main_len_products(test_category):
 
 
 def test_main_product_in_list(test_category):
-    assert test_category.products == ('Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток:5шт.'
-                                      'Iphone 15, 210000.0 руб. Остаток:8шт.'
-                                      'Xiaomi Redmi Note 11, 31000.0 руб. Остаток:14шт.')
+    assert test_category.products == ('Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток:5шт.\n'
+                                      'Iphone 15, 210000.0 руб. Остаток:8шт.\n'
+                                      'Xiaomi Redmi Note 11, 31000.0 руб. Остаток:14шт.\n')
 
 
 def test_set_negative_price(capsys):
@@ -63,10 +64,10 @@ def test_category_add_product(test_category, test_products_4):
                                               "Фоновая подсветка",
                                               123000.0,
                                               7))
-    assert test_category.products == ('Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток:5шт.'
-                                      'Iphone 15, 210000.0 руб. Остаток:8шт.'
-                                      'Xiaomi Redmi Note 11, 31000.0 руб. Остаток:14шт.'
-                                      '55" QLED 4K, 123000.0 руб. Остаток:7шт.')
+    assert test_category.products == ('Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток:5шт.\n'
+                                      'Iphone 15, 210000.0 руб. Остаток:8шт.\n'
+                                      'Xiaomi Redmi Note 11, 31000.0 руб. Остаток:14шт.\n'
+                                      '55" QLED 4K, 123000.0 руб. Остаток:7шт.\n')
 
 
 def test_new_product(capsys):
@@ -77,3 +78,17 @@ def test_new_product(capsys):
     assert product.description == "256GB, Серый цвет, 200MP камера"
     assert product.price == 180000.0
     assert product.quantity == 5
+
+
+def test_product_str(test_products):
+    assert str(test_products) == 'Samsung Galaxy S23 Ultra, 180000.0 руб. Остаток:5шт.'
+
+
+def test_product_add(test_products, test_products_2, test_products_3):
+    assert test_products + test_products_2 == 2580000.0
+    assert test_products + test_products_3 == 1334000.0
+    assert test_products_2 + test_products_3 == 2114000.0
+
+
+def test_category_str(test_category):
+    assert str(test_category) == "Смартфоны, количество продуктов: 27 шт."
