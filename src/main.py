@@ -10,14 +10,6 @@ class Product:
         self.__price = price
         self.quantity = quantity
 
-    def __eq__(self, other):
-        return (
-            self.name == other.name
-            and self.description == other.description
-            and self.price == other.price
-            and self.quantity == other.quantity
-        )
-
     @property
     def price(self):
         return self.__price
@@ -26,7 +18,6 @@ class Product:
     def price(self, new_price):
         if new_price <= 0:
             print('Цена не должна быть нулевая или отрицательная')
-
         else:
             self.__price = new_price
 

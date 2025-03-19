@@ -1,13 +1,13 @@
 import pytest
 
-from src.main import Category, Product, price
+from src.main import Category, Product
 
 
 @pytest.fixture
 def test_products():
     return Product(
         name='Samsung Galaxy S23 Ultra',
-        description='56GB, Серый цвет, 200MP камера',
+        description='256GB, Серый цвет, 200MP камера',
         price=180000.0,
         quantity=5
     )
@@ -53,12 +53,12 @@ def test_category():
                           180000.0, 5),
                   Product("Iphone 15", "512GB, Gray space", 210000.0, 8),
                   Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14),
-                  Product("55\" QLED 4K", "Фоновая подсветка", 123000.0, 7)
                   ]
     )
 
 
-@pytest.fixture
-def new_product_price():
-    return Product.price == 800
-
+def new_product_1():
+    return {"name": "Samsung Galaxy S23 Ultra",
+            "description": "256GB, Серый цвет, 200MP камера",
+            "price": 180000.0,
+            "quantity": 5}
