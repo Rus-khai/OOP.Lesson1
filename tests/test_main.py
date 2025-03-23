@@ -1,5 +1,5 @@
 from src.main import Category, Product
-from tests.conftest import test_products_3
+import pytest
 
 
 def test_main_product(test_products):
@@ -92,3 +92,74 @@ def test_product_add(test_products, test_products_2, test_products_3):
 
 def test_category_str(test_category):
     assert str(test_category) == "Смартфоны, количество продуктов: 27 шт."
+
+
+def test_main_smartphone_1_product_init(smartphone_1_product):
+    assert smartphone_1_product.name == "Samsung Galaxy S23 Ultra"
+    assert smartphone_1_product.description == "256GB, Серый цвет, 200MP камера"
+    assert smartphone_1_product.price == 180000.0
+    assert smartphone_1_product.quantity == 5
+    assert smartphone_1_product.efficiency == 95.5
+    assert smartphone_1_product.model == "S23 Ultra"
+    assert smartphone_1_product.memory == 256
+    assert smartphone_1_product.color == "Серый"
+
+
+def test_main_smartphone_2_product_init(smartphone_2_product):
+    assert smartphone_2_product.name == "Iphone 15"
+    assert smartphone_2_product.description == "512GB, Gray space"
+    assert smartphone_2_product.price == 210000.0
+    assert smartphone_2_product.quantity == 8
+    assert smartphone_2_product.efficiency == 98.2
+    assert smartphone_2_product.model == "15"
+    assert smartphone_2_product.memory == 512
+    assert smartphone_2_product.color == "Gray space"
+
+
+def test_main_smartphone_3_product_init(smartphone_3_product):
+    assert smartphone_3_product.name == "Xiaomi Redmi Note 11"
+    assert smartphone_3_product.description == "1024GB, Синий"
+    assert smartphone_3_product.price == 31000.0
+    assert smartphone_3_product.quantity == 14
+    assert smartphone_3_product.efficiency == 90.3
+    assert smartphone_3_product.model == "Note 11"
+    assert smartphone_3_product.memory == 1024
+    assert smartphone_3_product.color == "Синий"
+
+
+def test_main_lawngrass_1_product_init(lawngrass_1_product):
+    assert lawngrass_1_product.name == "Газонная трава"
+    assert lawngrass_1_product.description == "Элитная трава для газона"
+    assert lawngrass_1_product.price == 500.0
+    assert lawngrass_1_product.quantity == 20
+    assert lawngrass_1_product.country == "Россия"
+    assert lawngrass_1_product.germination_period == "7 дней"
+    assert lawngrass_1_product.color == "Зеленый"
+
+
+def test_main_lawngrass_2_product_init(lawngrass_2_product):
+    assert lawngrass_2_product.name == "Газонная трава 2"
+    assert lawngrass_2_product.description == "Выносливая трава"
+    assert lawngrass_2_product.price == 450.0
+    assert lawngrass_2_product.quantity == 15
+    assert lawngrass_2_product.country == "США"
+    assert lawngrass_2_product.germination_period == "5 дней"
+    assert lawngrass_2_product.color == "Темно-зеленый"
+
+
+def test_main_add_product(smartphone_1_product, smartphone_2_product):
+    assert smartphone_1_product + smartphone_2_product == 2580000.0
+
+
+def test_main_add_product_error(smartphone_1_product, smartphone_2_product):
+    with pytest.raises(TypeError):
+        result = smartphone_1_product + 1
+
+
+def test_main_add_product_lawngrass(lawngrass_1_product, lawngrass_2_product):
+    assert lawngrass_1_product + lawngrass_2_product == 16750.0
+
+
+def test_main_add_product_lawngrass_error(lawngrass_1_product, lawngrass_2_product):
+    with pytest.raises(TypeError):
+        result = lawngrass_1_product + 1
