@@ -154,7 +154,7 @@ def test_main_add_product(smartphone_1_product, smartphone_2_product):
 
 def test_main_add_product_error(smartphone_1_product, smartphone_2_product):
     with pytest.raises(TypeError):
-        result = smartphone_1_product + 1
+        smartphone_1_product + 1
 
 
 def test_main_add_product_lawngrass(lawngrass_1_product, lawngrass_2_product):
@@ -163,7 +163,7 @@ def test_main_add_product_lawngrass(lawngrass_1_product, lawngrass_2_product):
 
 def test_main_add_product_lawngrass_error(lawngrass_1_product, lawngrass_2_product):
     with pytest.raises(TypeError):
-        result = lawngrass_1_product + 1
+        lawngrass_1_product + 1
 
 
 def test_print_mixin(capsys):
