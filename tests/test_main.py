@@ -1,5 +1,6 @@
-from src.main import Category, Product
 import pytest
+
+from src.main import Category, Product
 
 
 def test_main_product(test_products):
@@ -52,7 +53,7 @@ def test_set_negative_price(capsys):
     )
     new_product.price = -50
     captured = capsys.readouterr()  # Перехватываем вывод в консоль
-    assert captured.out.strip() == 'Цена не должна быть нулевая или отрицательная'
+    assert captured.out.strip().split('\n')[-1] == 'Цена не должна быть нулевая или отрицательная'
     assert new_product.price == 180000.0
     """Тест на установку корректной цены."""
     new_product.price = 100
@@ -153,7 +154,7 @@ def test_main_add_product(smartphone_1_product, smartphone_2_product):
 
 def test_main_add_product_error(smartphone_1_product, smartphone_2_product):
     with pytest.raises(TypeError):
-        result = smartphone_1_product + 1
+        smartphone_1_product + 1
 
 
 def test_main_add_product_lawngrass(lawngrass_1_product, lawngrass_2_product):
@@ -162,4 +163,14 @@ def test_main_add_product_lawngrass(lawngrass_1_product, lawngrass_2_product):
 
 def test_main_add_product_lawngrass_error(lawngrass_1_product, lawngrass_2_product):
     with pytest.raises(TypeError):
-        result = lawngrass_1_product + 1
+        lawngrass_1_product + 1
+
+
+def test_print_mixin(capsys):
+    Product(
+        name='Samsung Galaxy S23 Ultra',
+        description='256GB, Серый цвет, 200MP камера',
+        price=180000.0,
+        quantity=5)
+    message = capsys.readouterr()
+    assert message.out.strip() == "Product(Samsung Galaxy S23 Ultra,256GB, Серый цвет, 200MP камера,180000.0, 5)"
