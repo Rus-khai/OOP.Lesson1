@@ -15,3 +15,4 @@ git@github.com:Rus-khai/OOP.Lesson1.git
 ## Tests:
 ### **conftest.py:**
 ### **test_main.py:**
+ef1073e786e10ce16bd2aa2bd1575049
